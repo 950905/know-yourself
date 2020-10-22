@@ -10,7 +10,16 @@ export default class Index extends Component {
 
   UNSAFE_componentWillUnmount () { }
 
-  UNSAFE_componentDidShow () { }
+  UNSAFE_componentDidShow () {
+    console.log(222)
+    console.log('scope', this.$scope)
+    if (typeof this.$scope.getTabBar === 'function' &&
+      this.$scope.getTabBar()) {
+      this.$scope.getTabBar().$component.setState({
+        selected: 'home'
+      })
+    }
+  }
 
   UNSAFE_componentDidHide () { }
 
