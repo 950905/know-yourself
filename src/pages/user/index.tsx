@@ -4,7 +4,7 @@ import { View } from '@tarojs/components'
 import { connect } from 'react-redux'
 import './index.less'
 
-interface HomeProps {
+interface UserProps {
   dispatch: any
 }
 interface keyValueData {
@@ -14,7 +14,7 @@ interface keyValueData {
 @connect(({ app }: keyValueData) => ({
   tabSelected: app.tabSelected
 }))
-export default class Home extends Component<HomeProps> {
+export default class User extends Component<UserProps> {
 
   componentWillMount () {
   }
@@ -27,11 +27,11 @@ export default class Home extends Component<HomeProps> {
   componentDidShow () {
     const { dispatch } = this.props
     const router = Taro.getCurrentInstance().router
-    if (router.path === '/pages/home/index') {
+    if (router.path === '/pages/user/index') {
       dispatch({
         type: 'app/setTabSelected',
         payload: {
-          tabSelected: 'home'
+          tabSelected: 'user'
         }
       })
     }

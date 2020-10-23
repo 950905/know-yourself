@@ -17,7 +17,7 @@ const store = dvaApp.getStore()
 class App extends Component {
 
   componentDidMount () {
-    Taro.hideHomeButton()
+    // Taro.hideHomeButton()
     this.getOauthStatus()
   }
 

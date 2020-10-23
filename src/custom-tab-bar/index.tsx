@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Taro from '@tarojs/taro'
-import { View, Navigator, Text, Image } from '@tarojs/components'
+import { View, Navigator, Text, Image, Block } from '@tarojs/components'
+import { connect } from 'react-redux'
 import note1 from '../assets/images/note_1.png'
 import note2 from '../assets/images/note_2.png'
 import find1 from '../assets/images/find_1.png'
@@ -14,7 +15,7 @@ const tab = {
   },
   "colorSty": {
     "color": "#8d989c",
-    "selectedColor": "#509aff",
+    "selectedColor": "#DC5A5A",
   },
   "list": [
     {
@@ -32,26 +33,29 @@ const tab = {
       "iconPath": noteAdd
     },
     {
-      "pagePath": "/pages/finding/index",
+      "pagePath": "/pages/user/index",
       "text": "我的",
       "isSpecial": false,
       "iconPath": find2,
       "selectedPath": find1,
-      "key": "find"
+      "key": "user"
     }
   ]
 }
 
 interface TarBarProps {
-  selected: string;
+  tabSelected: string;
   addNote: () => void;
 }
+interface keyValueData {
+  [key: string]: any
+}
 
+@connect(({ app }: keyValueData) => ({
+  tabSelected: app.tabSelected
+}))
 class TarBar extends Component<TarBarProps> {
-
-  state = {
-    selected: ''
-  }
+  
   addNote = () => {
     Taro.navigateTo({
       url: '/pages/add/index?type=public'
@@ -59,7 +63,7 @@ class TarBar extends Component<TarBarProps> {
   }
 
   render () {
-    const { selected } = this.state
+    const { tabSelected } = this.props
     return (
       <View className="tab_box" style={tab.background}>
         {
@@ -74,8 +78,8 @@ class TarBar extends Component<TarBarProps> {
                   </View>
                 </View>
                 :
-                <Navigator className="tab_nav" hover-class="none" url={item.pagePath} data-url={item.pagePath} style={{'color': item.key === selected ? tab.colorSty.selectedColor : tab.colorSty.color}} open-type="switchTab">
-                  <Image className="tab_icon" src={item.key === selected ? item.selectedPath : item.iconPath}></Image>
+                <Navigator className="tab_nav" hover-class="none" url={item.pagePath} data-url={item.pagePath} style={{'color': item.key === tabSelected ? tab.colorSty.selectedColor : tab.colorSty.color}} open-type="switchTab">
+                  <Image className="tab_icon" src={item.key === tabSelected ? item.selectedPath : item.iconPath}></Image>
                   <Text>{item.text}</Text>
                 </Navigator>
               }

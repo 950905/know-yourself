@@ -1,3 +1,4 @@
-export default[
-  
+import app from './app.js'
+export default [
+  app
 ]

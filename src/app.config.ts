@@ -2,6 +2,7 @@ export default {
   pages: [
     'pages/home/index',
     'pages/index/index',
+    'pages/user/index'
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -18,11 +19,13 @@ export default {
     list: [
       {
         pagePath: 'pages/home/index',
+        iconPath: './assets/images/note_2.png',
         text: '首页'
       },
       {
-        pagePath: 'pages/home/index',
-        text: '首页'
+        pagePath: 'pages/user/index',
+        iconPath: './assets/images/find_2.png',
+        text: '我的'
       }
     ]
   }
